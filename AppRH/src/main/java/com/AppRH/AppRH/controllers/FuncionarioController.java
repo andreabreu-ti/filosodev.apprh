@@ -49,6 +49,7 @@ public class FuncionarioController {
 	}
 
 	// LISTAR FUNCIONÁRIOS
+	@RequestMapping("/funcionarios")
 	public ModelAndView listaFuncionarios() {
 		ModelAndView mv = new ModelAndView("funcionario/listaFuncionario");
 		Iterable<Funcionario> funcionarios = fr.findAll();
