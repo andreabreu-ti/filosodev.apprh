@@ -63,11 +63,11 @@ public class FuncionarioController {
 
 		Funcionario funcionario = fr.findById(id);
 		ModelAndView mv = new ModelAndView("funcionario/dependentes");
-		mv.addObject("funcionario", funcionario);
+		mv.addObject("funcionarios", funcionario);
 
 		// LISTA DE DEPENDENTES BASEADA NO FUNCINARIO
 		Iterable<Dependentes> dependentes = dr.findByFuncionario(funcionario);
-		mv.addObject(dependentes);
+		mv.addObject("dependentes", dependentes);
 		return mv;
 
 	}
