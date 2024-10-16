@@ -83,6 +83,7 @@ public class FuncionarioController {
 		}
 
 		if (dr.findByCpf(dependentes.getCpf()) != null) {
+			System.out.println("CPF duplicado");
 			attributes.addFlashAttribute("mensagem_erro", "CPF Duplicado!");
 			return "redirect:/dependentes/{id}";
 		}
@@ -90,6 +91,9 @@ public class FuncionarioController {
 		Funcionario funcionario = fr.findById(id);
 		dependentes.setFuncionario(funcionario);
 		dr.save(dependentes);
+		
+		System.out.println("Dependente salvo com sucesso: " + dependentes.getNome() + ", Data: " + dependentes.getData());
+		
 		attributes.addFlashAttribute("mensagem", "Dependente adicionado com sucesso!");
 		return "redirect:/dependentes/{id}";
 
@@ -131,7 +135,7 @@ public class FuncionarioController {
 
 	// DELETAR DEPENDENTES
 	@RequestMapping(value = "/deletarDependente")
-	public String deletarDependentes(String cpf) {
+	public String deletarDependente(String cpf) {
 
 		Dependentes dependente = dr.findByCpf(cpf);
 

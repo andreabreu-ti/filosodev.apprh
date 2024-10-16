@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 public class Dependentes implements Serializable {
@@ -22,10 +23,20 @@ public class Dependentes implements Serializable {
 	private String cpf;
 
 	private String nome;
-	private String dataNascimento;
+
+	@NotEmpty
+	private String data;
 
 	@ManyToOne
 	private Funcionario funcionario;
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
 
 	public String getCpf() {
 		return cpf;
@@ -41,14 +52,6 @@ public class Dependentes implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
-	}
-
-	public String getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(String dataNascimento) {
-		this.dataNascimento = dataNascimento;
 	}
 
 	public Funcionario getFuncionario() {
