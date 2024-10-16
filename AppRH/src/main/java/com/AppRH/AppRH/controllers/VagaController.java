@@ -1,7 +1,6 @@
 package com.AppRH.AppRH.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,7 +21,7 @@ public class VagaController {
 
 	@Autowired
 	private VagaRepository vr;
-	
+
 	@Autowired
 	private CandidatoRepository cr;
 
@@ -32,8 +31,7 @@ public class VagaController {
 
 		return "vaga/formVaga";
 	}
-	
-	
+
 	@RequestMapping(value = "/cadastrarVaga", method = RequestMethod.POST)
 	public String form(@Valid Vaga vaga, BindingResult result, RedirectAttributes attributes) {
 
@@ -81,8 +79,7 @@ public class VagaController {
 		return "redirect:/vagas";
 	}
 
-	
-	//ADICIONAR CANDIDATO
+	// ADICIONAR CANDIDATO
 	@RequestMapping(value = "/{codigo}", method = RequestMethod.POST)
 	public String detalhesVagaPost(@PathVariable("codigo") long codigo, @Valid Candidato candidato,
 			BindingResult result, RedirectAttributes attributes) {
@@ -142,5 +139,5 @@ public class VagaController {
 		String codigo = "" + codigoLong;
 		return "redirect:/" + codigo;
 	}
-	
+
 }
