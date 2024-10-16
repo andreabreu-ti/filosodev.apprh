@@ -57,7 +57,7 @@ public class VagaController {
 	}
 
 	//
-	@RequestMapping(value = "/{codigo}", method = RequestMethod.GET)
+	@RequestMapping(value = "/vaga/{codigo}", method = RequestMethod.GET)
 	public ModelAndView detalhesVaga(@PathVariable("codigo") long codigo) {
 
 		Vaga vaga = vr.findByCodigo(codigo);
@@ -80,27 +80,27 @@ public class VagaController {
 	}
 
 	// ADICIONAR CANDIDATO
-	@RequestMapping(value = "/{codigo}", method = RequestMethod.POST)
+	@RequestMapping(value = "/vaga/{codigo}", method = RequestMethod.POST)
 	public String detalhesVagaPost(@PathVariable("codigo") long codigo, @Valid Candidato candidato,
 			BindingResult result, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos");
-			return "redirect:/{codigo}";
+			return "redirect:/vaga/{codigo}";
 		}
 
 		// RG DUPLICADO
 
 		if (cr.findByRg(candidato.getRg()) != null) {
 			attributes.addFlashAttribute("mensagem_erro", "RG duplicado");
-			return "redirect:/{codigo}";
+			return "redirect:/vaga/{codigo}";
 		}
 
 		Vaga vaga = vr.findByCodigo(codigo);
 		candidato.setVaga(vaga);
 		cr.save(candidato);
 		attributes.addFlashAttribute("mensagem", "Candidato adicionado com sucesso!");
-		return "redirect:/{codigo}";
+		return "redirect:/vaga/{codigo}";
 	}
 
 	// DELETA CANDIDATOS PELO RG
