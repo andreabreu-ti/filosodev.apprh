@@ -29,7 +29,7 @@ public class FuncionarioController {
 	@RequestMapping(value = "/cadastrarFuncionario", method = RequestMethod.GET)
 	public String form() {
 
-		return "funcionario/formFuncionario";
+		return "funcionario/form-funcionario";
 
 	}
 
@@ -51,18 +51,18 @@ public class FuncionarioController {
 	// LISTAR FUNCIONÁRIOS
 	@RequestMapping("/funcionarios")
 	public ModelAndView listaFuncionarios() {
-		ModelAndView mv = new ModelAndView("funcionario/listaFuncionario");
+		ModelAndView mv = new ModelAndView("funcionario/lista-funcionario");
 		Iterable<Funcionario> funcionarios = fr.findAll();
 		mv.addObject("funcionarios", funcionarios);
 		return mv;
 	}
 
 	// LISTAR DEPENDENTES
-	@RequestMapping(value = "/dependentes/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/detalhes-funcionario/{id}", method = RequestMethod.GET)
 	public ModelAndView dependentes(@PathVariable("id") long id) {
 
 		Funcionario funcionario = fr.findById(id);
-		ModelAndView mv = new ModelAndView("funcionario/dependentes");
+		ModelAndView mv = new ModelAndView("funcionario/detalhes-funcionario");
 		mv.addObject("funcionarios", funcionario);
 
 		// LISTA DE DEPENDENTES BASEADA NO FUNCINARIO
@@ -73,19 +73,19 @@ public class FuncionarioController {
 	}
 
 	// ADICIONAR DEPENDENTES
-	@RequestMapping(value = "/dependentes/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/detalhes-funcionario/{id}", method = RequestMethod.POST)
 	public String dependentesPost(@PathVariable("id") long id, Dependente dependentes, BindingResult result,
 			RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
 			attributes.addFlashAttribute("mensagem", "Verifique os campos!");
-			return "redirect:/dependentes/{id}";
+			return "redirect:/detalhes-funcionario/{id}";
 		}
 
 		if (dr.findByCpf(dependentes.getCpf()) != null) {
 			System.out.println("CPF duplicado");
 			attributes.addFlashAttribute("mensagem_erro", "CPF Duplicado!");
-			return "redirect:/dependentes/{id}";
+			return "redirect:/detalhes-funcionario/{id}";
 		}
 
 		Funcionario funcionario = fr.findById(id);
@@ -95,7 +95,7 @@ public class FuncionarioController {
 		System.out.println("Dependente salvo com sucesso: " + dependentes.getNome() + ", Data: " + dependentes.getData());
 		
 		attributes.addFlashAttribute("mensagem", "Dependente adicionado com sucesso!");
-		return "redirect:/dependentes/{id}";
+		return "redirect:/detalhes-funcionario/{id}";
 
 	}
 
@@ -129,7 +129,7 @@ public class FuncionarioController {
 
 		long idLong = funcionario.getId();
 		String id = "" + idLong;
-		return "redirect:/dependentes/" + id;
+		return "redirect:/detalhes-funcionario/" + id;
 
 	}
 
@@ -143,7 +143,7 @@ public class FuncionarioController {
 		String codigo = "" + funcionario.getId();
 
 		dr.delete(dependente);
-		return "redirect:/dependentes/" + codigo;
+		return "redirect:/detalhes-funcionario/" + codigo;
 
 	}
 

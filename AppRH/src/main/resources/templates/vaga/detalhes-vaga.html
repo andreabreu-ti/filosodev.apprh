@@ -25,9 +25,10 @@
 
 </head>
 
+
 <body>
 
-	<header>
+<header>
 
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 			<div class="container-fluid">
@@ -58,103 +59,98 @@
 
 	<div class="container">
 
-		<h1>Informações do funcionário:</h1>
-		
-		<div class="container" th:each="funcionario : ${funcionarios}">
+		<h1>Detalhes da vaga   ddd:</h1>
+		<div th:each="vaga : ${vaga}" class="container">
 
 			<br>
 
 			<p>
-				<b>Nome:</b> <span th:text="${funcionario.nome}"></span>
+				<b>Vaga:</b> <span th:text="${vaga.nome}"></span>
 			</p>
 			<p>
-				<b>Data de nascimento:</b> <span th:text="${funcionario.data}"></span>
+				<b>Descrição do cargo:</b> <span th:text="${vaga.descricao}"></span>
 			</p>
 			<p>
-				<b>E-mail:</b> <span th:text="${funcionario.email}"></span>
+				<b>Expira em:</b> <span th:text="${vaga.data}"></span>
 			</p>
-
+			<p>
+				<b>Salário:</b> R$ <span th:text="${vaga.salario}"></span>
+			</p>
 
 			<br> <br>
 
-			<h2>Cadastrar dependentes</h2>
-			
-			
 
-			<form method="post" th:object="${dependente}">
+
+
+
+			<h2>Cadastrar candidato:</h2>
+
+			<br>
+			
+			<th:block th:include="mensagem-validacao"></th:block>
+
+			<form method="post" th:object="${candidato}">
 
 				<div class="form-group">
 					<div class="row">
 
 						<div class="col">
-							<label for=""><b>Nome:</b> </label> <input type="text" value="" name="nome"
-								class="form-control" placeholder="Nome Completo" required />
+							<label for=""><b>Nome do candidato:</b> </label> <input type="text" value=""
+								name="nomeCandidato" class="form-control" placeholder="Nome Completo" required />
 						</div>
 
-
 						<div class="col">
-							<label for=""><b>CPF: </b> </label><input type="text" value="" name="cpf"
-								placeholder="Somente números, sem traçõs ou pontos." class="validate form-control"
+							<label for=""><b>RG: </b> </label><input type="text" value="" name="rg"
+								placeholder="Somente números, sem traços ou pontos." class="validate form-control"
 								required />
 						</div>
 
-
-						<br> <br>
 						<div class="col">
-
-							<div class="form-group">
-								<label for=""><b>Data de nascimento:</b></label> <input type="date" value=""
-									name="data" class="form-control" required /> <small
-									class="form-text text-muted"><i>*
-										Dia/Mês/Ano.</i></small>
-							</div>
+							<label for=""><b>E-mail:</b> </label> <input type="text" value="" name="email"
+								class="form-control" placeholder="email@email.com" required />
 						</div>
 
 					</div>
 
 
 
+				</div>
 
-					<button type="submit" class="btn btn-success">Adicionar Dependente</button>
+				<button type="submit" class="btn btn-success">Adicionar
+					Candidato</button>
 			</form>
-
 
 
 		</div>
 
-		<th:block th:include="mensagemValidacao"></th:block>
-
 		<br> <br>
 
-		<h2>Dependentes:</h2>
+		<h2>Inscritos:</h2>
 
 		<br>
 
 		<table class="table table-hover table-responsive w-auto table-striped">
 			<thead>
 				<tr>
-					<th scope="col">Nome do dependente:</th>
-					<th scope="col">CPF:</th>
-					<th scope="col">Data de nascimento:</th>
+					<th scope="col">Nome do candidato:</th>
+					<th scope="col">RG:</th>
+					<th scope="col">E-mail:</th>
 				</tr>
 			</thead>
 			<tbody>
-			
-				<tr th:each="dependente : ${dependentes}">
-					<td><span th:text="${dependente.nome}"></span></td>
-					<td><span th:text="${dependente.cpf}"></span></td>
-					<td><span th:text="${dependente.data}"></span></td>
-					
-					<td>
-						<a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('FC#deletarDependente').arg(0, dependente.cpf)).build()}">
-							<button type="button" class="btn btn-danger">Excluir</button>
-						</a>
-					</td>
 
+				<tr th:each="candidato : ${candidato}">
+					<td><span th:text="${candidato.nomeCandidato}"></span></td>
+					<td><span th:text="${candidato.rg}"></span></td>
+					<td><span th:text="${candidato.email}"></span></td>
+					<td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('VC#deletarCandidato').arg(0, candidato.rg)).build()}"><button type="button"
+								class="btn btn-danger">Excluir</button></a></td>
 				</tr>
-				
+
+
 			</tbody>
 		</table>
+
 
 	</div>
 
@@ -168,12 +164,15 @@
 
 
 
+
 	<!--JavaScript bootstrap-->
 	<script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
 
-	</script>
+		</script>
+
 </body>
+
 
 </html>
