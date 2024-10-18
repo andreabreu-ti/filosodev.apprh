@@ -59,7 +59,7 @@ public class FuncionarioController {
 
 	// LISTAR DEPENDENTES
 	@RequestMapping(value = "/detalhes-funcionario/{id}", method = RequestMethod.GET)
-	public ModelAndView dependentes(@PathVariable("id") long id) {
+	public ModelAndView detalhesFuncionario(@PathVariable("id") long id) {
 
 		Funcionario funcionario = fr.findById(id);
 		ModelAndView mv = new ModelAndView("funcionario/detalhes-funcionario");
@@ -74,7 +74,7 @@ public class FuncionarioController {
 
 	// ADICIONAR DEPENDENTES
 	@RequestMapping(value = "/detalhes-funcionario/{id}", method = RequestMethod.POST)
-	public String dependentesPost(@PathVariable("id") long id, Dependente dependentes, BindingResult result,
+	public String detalhesFuncionarioPost(@PathVariable("id") long id, Dependente dependentes, BindingResult result,
 			RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
