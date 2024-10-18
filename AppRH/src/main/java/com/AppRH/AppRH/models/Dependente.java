@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotEmpty;
 
 @Entity
-public class Dependentes implements Serializable {
+public class Dependente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

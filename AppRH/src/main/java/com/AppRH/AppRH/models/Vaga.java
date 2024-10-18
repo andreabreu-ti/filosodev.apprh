@@ -10,10 +10,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Data;
 
 @Entity
-@Data
 public class Vaga implements Serializable {
 
 	private static final long serialVersionUID = 1L;

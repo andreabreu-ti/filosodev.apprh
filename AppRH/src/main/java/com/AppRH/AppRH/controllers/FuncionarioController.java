@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.AppRH.AppRH.models.Dependentes;
+import com.AppRH.AppRH.models.Dependente;
 import com.AppRH.AppRH.models.Funcionario;
 import com.AppRH.AppRH.repository.DependentesRepository;
 import com.AppRH.AppRH.repository.FuncionarioRepository;
@@ -66,7 +66,7 @@ public class FuncionarioController {
 		mv.addObject("funcionarios", funcionario);
 
 		// LISTA DE DEPENDENTES BASEADA NO FUNCINARIO
-		Iterable<Dependentes> dependentes = dr.findByFuncionario(funcionario);
+		Iterable<Dependente> dependentes = dr.findByFuncionario(funcionario);
 		mv.addObject("dependentes", dependentes);
 		return mv;
 
@@ -74,7 +74,7 @@ public class FuncionarioController {
 
 	// ADICIONAR DEPENDENTES
 	@RequestMapping(value = "/dependentes/{id}", method = RequestMethod.POST)
-	public String dependentesPost(@PathVariable("id") long id, Dependentes dependentes, BindingResult result,
+	public String dependentesPost(@PathVariable("id") long id, Dependente dependentes, BindingResult result,
 			RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
@@ -137,7 +137,7 @@ public class FuncionarioController {
 	@RequestMapping(value = "/deletarDependente")
 	public String deletarDependente(String cpf) {
 
-		Dependentes dependente = dr.findByCpf(cpf);
+		Dependente dependente = dr.findByCpf(cpf);
 
 		Funcionario funcionario = dependente.getFuncionario();
 		String codigo = "" + funcionario.getId();

@@ -39,32 +39,35 @@ public class BuscaController {
 	public ModelAndView buscarIndex(@RequestParam("buscar") String buscar, @RequestParam("nome") String nome) {
 
 		ModelAndView mv = new ModelAndView("index");
+
 		String mensagem = "Resultados da busca por " + buscar;
 
-		if (nome.equals("nomeFuncionario")) {
+		if (nome.equals("nomefuncionario")) {
 
-			mv.addObject("funconarios", fr.findByNomes(buscar));
+			mv.addObject("funcionarios", fr.findByNomes(buscar));
 
-		} else if (nome.equals("nomeDependente")) {
+		} else if (nome.equals("nomedependente")) {
 
 			mv.addObject("dependentes", dr.findByNomesDependentes(buscar));
 
-		} else if (nome.equals("nomeCandidato")) {
+		} else if (nome.equals("nomecandidato")) {
 
 			mv.addObject("candidatos", cr.findByNomesCandidatos(buscar));
 
-		} else if (nome.equals("tituloVaga")) {
+		} else if (nome.equals("titulovaga")) {
 
 			mv.addObject("vagas", vr.findByNomesVaga(buscar));
 
 		} else {
 
-			mv.addObject("funconarios", fr.findByNomes(buscar));
+			mv.addObject("funcionarios", fr.findByNomes(buscar));
 			mv.addObject("dependentes", dr.findByNomesDependentes(buscar));
 			mv.addObject("candidatos", cr.findByNomesCandidatos(buscar));
 			mv.addObject("vagas", vr.findByNomesVaga(buscar));
 
 		}
+
+		mv.addObject("mensagem", mensagem);
 
 		return mv;
 	}

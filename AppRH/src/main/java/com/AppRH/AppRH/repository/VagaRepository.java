@@ -10,9 +10,10 @@ import com.AppRH.AppRH.models.Vaga;
 public interface VagaRepository extends CrudRepository<Vaga, Long> {
 
 	Vaga findByCodigo(long codigo);
+
 	List<Vaga> findByNome(String nome);
-	
-	// PARA BUSCA
+
+	// Query para a busca
 	@Query(value = "select u from Vaga u where u.nome like %?1%")
 	List<Vaga> findByNomesVaga(String nome);
 }
