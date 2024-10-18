@@ -3,9 +3,9 @@ package com.AppRH.AppRH.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,7 +26,7 @@ public class FuncionarioController {
 	private DependentesRepository dr;
 
 	// CHAMA O FORM DE CADASTRAR FUNCIONARIOS
-	@RequestMapping(value = "/cadastrarFuncionario", method = RequestMethod.GET)
+	@GetMapping("/cadastrarFuncionario")
 	public String form() {
 
 		return "funcionario/form-funcionario";
@@ -34,7 +34,7 @@ public class FuncionarioController {
 	}
 
 	// CADASTRA FUNCIONARIOS
-	@RequestMapping(value = "/cadastrarFuncionario", method = RequestMethod.POST)
+	@PostMapping("/cadastrarFuncionario")
 	public String form(@Valid Funcionario funcionario, BindingResult result, RedirectAttributes attributes) {
 
 		if (result.hasErrors()) {
@@ -49,7 +49,7 @@ public class FuncionarioController {
 	}
 
 	// LISTAR FUNCIONÁRIOS
-	@RequestMapping("/funcionarios")
+	@GetMapping("/funcionarios")
 	public ModelAndView listaFuncionarios() {
 		ModelAndView mv = new ModelAndView("funcionario/lista-funcionario");
 		Iterable<Funcionario> funcionarios = fr.findAll();
@@ -58,7 +58,7 @@ public class FuncionarioController {
 	}
 
 	// LISTAR DEPENDENTES
-	@RequestMapping(value = "/detalhes-funcionario/{id}", method = RequestMethod.GET)
+	@GetMapping("/detalhes-funcionario/{id}")
 	public ModelAndView detalhesFuncionario(@PathVariable("id") long id) {
 
 		Funcionario funcionario = fr.findById(id);
@@ -73,7 +73,7 @@ public class FuncionarioController {
 	}
 
 	// ADICIONAR DEPENDENTES
-	@RequestMapping(value = "/detalhes-funcionario/{id}", method = RequestMethod.POST)
+	@PostMapping("/detalhes-funcionario/{id}")
 	public String detalhesFuncionarioPost(@PathVariable("id") long id, Dependente dependentes, BindingResult result,
 			RedirectAttributes attributes) {
 
@@ -91,16 +91,17 @@ public class FuncionarioController {
 		Funcionario funcionario = fr.findById(id);
 		dependentes.setFuncionario(funcionario);
 		dr.save(dependentes);
-		
-		System.out.println("Dependente salvo com sucesso: " + dependentes.getNome() + ", Data: " + dependentes.getData());
-		
+
+		System.out
+				.println("Dependente salvo com sucesso: " + dependentes.getNome() + ", Data: " + dependentes.getData());
+
 		attributes.addFlashAttribute("mensagem", "Dependente adicionado com sucesso!");
 		return "redirect:/detalhes-funcionario/{id}";
 
 	}
 
 	// DELETA FUNCIONARIO
-	@RequestMapping("/deletarFuncionario")
+	@GetMapping("/deletarFuncionario")
 	public String deletarFuncionario(long id) {
 
 		Funcionario funcionario = fr.findById(id);
@@ -109,7 +110,7 @@ public class FuncionarioController {
 	}
 
 	// ATUALIZAR FUNCIONARIOS
-	@RequestMapping(value = "/editar-funcionario", method = RequestMethod.GET)
+	@GetMapping("/editar-funcionario")
 	public ModelAndView editarFuncionario(long id) {
 
 		Funcionario funcionario = fr.findById(id);
@@ -120,7 +121,7 @@ public class FuncionarioController {
 	}
 
 	// UPDATE FUNCIONARIO
-	@RequestMapping(value = "/editar-funcionario", method = RequestMethod.POST)
+	@PostMapping("/editar-funcionario")
 	public String updateFuncionario(@Valid Funcionario funcionario, BindingResult result,
 			RedirectAttributes attributes) {
 
@@ -134,7 +135,7 @@ public class FuncionarioController {
 	}
 
 	// DELETAR DEPENDENTES
-	@RequestMapping(value = "/deletarDependente")
+	@GetMapping("/deletarDependente")
 	public String deletarDependente(String cpf) {
 
 		Dependente dependente = dr.findByCpf(cpf);
