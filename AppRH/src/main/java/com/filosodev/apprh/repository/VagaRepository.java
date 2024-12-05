@@ -1,11 +1,11 @@
-package com.AppRH.AppRH.repository;
+package com.filosodev.apprh.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.AppRH.AppRH.models.Vaga;
+import com.filosodev.apprh.models.Vaga;
 
 public interface VagaRepository extends CrudRepository<Vaga, Long> {
 

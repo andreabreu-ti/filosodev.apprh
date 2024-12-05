@@ -1,4 +1,4 @@
-package com.AppRH.AppRH;
+package com.filosodev.apprh;
 
 import javax.sql.DataSource;
 

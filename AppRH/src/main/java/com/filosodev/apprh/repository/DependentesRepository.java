@@ -1,12 +1,12 @@
-package com.AppRH.AppRH.repository;
+package com.filosodev.apprh.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.AppRH.AppRH.models.Dependente;
-import com.AppRH.AppRH.models.Funcionario;
+import com.filosodev.apprh.models.Dependente;
+import com.filosodev.apprh.models.Funcionario;
 
 public interface DependentesRepository extends CrudRepository<Dependente, Long> {
 

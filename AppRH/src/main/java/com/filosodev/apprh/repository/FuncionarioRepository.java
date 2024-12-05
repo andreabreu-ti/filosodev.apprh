@@ -1,11 +1,11 @@
-package com.AppRH.AppRH.repository;
+package com.filosodev.apprh.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
-import com.AppRH.AppRH.models.Funcionario;
+import com.filosodev.apprh.models.Funcionario;
 
 public interface FuncionarioRepository extends CrudRepository<Funcionario, Long> {
 

@@ -1,4 +1,4 @@
-package com.AppRH.AppRH;
+package com.filosodev.apprh;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,3 +11,6 @@ public class AppRhApplication {
 	}
 
 }
+
+
+//https://github.com/FilosoDev/Spring-Boot-tutorial-AppRh?tab=readme-ov-file

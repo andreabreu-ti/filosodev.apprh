@@ -1,4 +1,4 @@
-package com.AppRH.AppRH.controllers;
+package com.filosodev.apprh.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.AppRH.AppRH.models.Dependente;
-import com.AppRH.AppRH.models.Funcionario;
-import com.AppRH.AppRH.repository.DependentesRepository;
-import com.AppRH.AppRH.repository.FuncionarioRepository;
+import com.filosodev.apprh.models.Dependente;
+import com.filosodev.apprh.models.Funcionario;
+import com.filosodev.apprh.repository.DependentesRepository;
+import com.filosodev.apprh.repository.FuncionarioRepository;
 
 import jakarta.validation.Valid;
 

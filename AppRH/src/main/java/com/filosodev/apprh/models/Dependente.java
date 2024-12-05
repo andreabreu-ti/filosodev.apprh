@@ -1,4 +1,4 @@
-package com.AppRH.AppRH.models;
+package com.filosodev.apprh.models;
 
 import java.io.Serializable;
 
