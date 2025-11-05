@@ -16,10 +16,12 @@ public class DataConfiguration {
 	public DataSource dataSource() {
 
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("org.postgresql.Driver");
-		dataSource.setUrl("jdbc:postgresql://localhost:5432/AppRH"); // ?useTimezone=true&serverTimezone=UTC
-		dataSource.setUsername("postgres");
-		dataSource.setPassword("alfa.123");
+		dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+		//dataSource.setDriverClassName("org.postgresql.Driver");
+		//dataSource.setUrl("jdbc:postgresql://localhost:5432/AppRH"); // ?useTimezone=true&serverTimezone=UTC
+		dataSource.setUrl("jdbc:sqlserver://10.51.12.12:1433;databaseName=dbAgroTest;encrypt=true;trustServerCertificate=true");
+		dataSource.setUsername("jdev");
+		dataSource.setPassword("jdev.123");
 		return dataSource;
 
 	}
@@ -28,10 +30,10 @@ public class DataConfiguration {
 	public JpaVendorAdapter jpaVendorAdapter() {
 
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-		adapter.setDatabase(Database.POSTGRESQL);
+		adapter.setDatabase(Database.SQL_SERVER);
 		adapter.setShowSql(true);
 		adapter.setGenerateDdl(true);
-		adapter.setDatabasePlatform("org.hibernate.dialect.PostgreSQLDialect");
+		adapter.setDatabasePlatform("org.hibernate.dialect.SQLServer2016Dialect");
 		adapter.setPrepareConnection(true);
 		return adapter;
 
